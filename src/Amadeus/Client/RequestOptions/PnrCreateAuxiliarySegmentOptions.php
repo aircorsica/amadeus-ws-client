@@ -23,24 +23,20 @@
 namespace Amadeus\Client\RequestOptions;
 
 /**
- * Ticket_DisplayTSMP Request options.
+ * PNR_CreateAuxiliarySegment Request Options
  *
  * @package Amadeus\Client\RequestOptions
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @author Anton Mykhailenko <anton.mykhailenko@smile-ukraine.com>
  */
-class TicketDisplayTsmpOptions extends Base
+class PnrCreateAuxiliarySegmentOptions implements RequestOptionsInterface
 {
-    /**
-     * Tattoo of the TSM-P to display.
-     *
-     * @var int
-     */
-    public $tattoo;
-
   /**
-   * The display mode
-   *
-   * @var ?string
+   * @var Pnr\CreateAuxiliarySegment\ManualAuxDetails
    */
-    public $displayMode = NULL;
+  public $manualAuxDetails;
+
+  public function __construct($manualAuxDetails) {
+    $this->manualAuxDetails = $manualAuxDetails;
+  }
+
 }

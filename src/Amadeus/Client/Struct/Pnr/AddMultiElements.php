@@ -202,7 +202,7 @@ class AddMultiElements extends BaseWsMessage
      * @param string|null $destination
      * @throws \ReflectionException
      */
-    protected function addSegments($segments, &$tattooCounter, $origin = null, $destination = null)
+    protected function addSegmentsaddSegments($segments, &$tattooCounter, $origin = null, $destination = null)
     {
         $tmpOrigDest = new OriginDestinationDetails();
 

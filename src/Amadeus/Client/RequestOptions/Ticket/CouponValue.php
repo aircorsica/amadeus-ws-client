@@ -20,27 +20,19 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions;
+namespace Amadeus\Client\RequestOptions\Ticket;
+
+use Amadeus\Client\LoadParamsFromArray;
 
 /**
- * Ticket_DisplayTSMP Request options.
+ * CouponValue
  *
- * @package Amadeus\Client\RequestOptions
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @package Amadeus\Client\RequestOptions\Ticket
  */
-class TicketDisplayTsmpOptions extends Base
+class CouponValue extends LoadParamsFromArray
 {
     /**
-     * Tattoo of the TSM-P to display.
-     *
-     * @var int
+     * @var MonetaryDetails
      */
-    public $tattoo;
-
-  /**
-   * The display mode
-   *
-   * @var ?string
-   */
-    public $displayMode = NULL;
+    public $monetaryDetails;
 }

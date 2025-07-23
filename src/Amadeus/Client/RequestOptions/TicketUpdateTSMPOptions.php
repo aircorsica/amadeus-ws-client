@@ -22,25 +22,34 @@
 
 namespace Amadeus\Client\RequestOptions;
 
+use Amadeus\Client\RequestOptions\Ticket\MonetaryInformation;
+use Amadeus\Client\RequestOptions\Ticket\CouponsDetails;
+
 /**
- * Ticket_DisplayTSMP Request options.
+ * Ticket_UpdateTSMP Request Options
  *
  * @package Amadeus\Client\RequestOptions
- * @author Dieter Devlieghere <dermikagh@gmail.com>
  */
-class TicketDisplayTsmpOptions extends Base
+class TicketUpdateTSMPOptions extends Base
 {
     /**
-     * Tattoo of the TSM-P to display.
+     * TSM tattoo reference
      *
-     * @var int
+     * @var \Amadeus\Client\Struct\Ticket\UpdateTSMP\TattooOfTSM
      */
-    public $tattoo;
+    public $tattooOfTSM;
 
-  /**
-   * The display mode
-   *
-   * @var ?string
-   */
-    public $displayMode = NULL;
+    /**
+     * Monetary information
+     *
+     * @var MonetaryInformation[]
+     */
+    public $monetaryInformation;
+
+    /**
+     * Coupons details
+     *
+     * @var CouponsDetails
+     */
+    public $couponsDetails;
 }

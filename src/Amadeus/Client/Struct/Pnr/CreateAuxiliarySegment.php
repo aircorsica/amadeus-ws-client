@@ -20,27 +20,33 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions;
+namespace Amadeus\Client\Struct\Pnr;
+
+use Amadeus\Client\RequestOptions\PnrCreateAuxiliarySegmentOptions;
+use Amadeus\Client\Struct\BaseWsMessage;
 
 /**
- * Ticket_DisplayTSMP Request options.
+ * PNR_CreateAuxiliarySegment Request stucture
  *
- * @package Amadeus\Client\RequestOptions
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @package Amadeus\Client\Struct\Pnr
+ * @author Anton Mykhailenko <anton.mykhailenko@smile-ukraine.com>
  */
-class TicketDisplayTsmpOptions extends Base
+class CreateAuxiliarySegment extends BaseWsMessage
 {
-    /**
-     * Tattoo of the TSM-P to display.
-     *
-     * @var int
-     */
-    public $tattoo;
 
   /**
-   * The display mode
-   *
-   * @var ?string
+   * @var \Amadeus\Client\RequestOptions\Pnr\CreateAuxiliarySegment\ManualAuxDetails
    */
-    public $displayMode = NULL;
+  public $manualAuxDetails;
+
+  /**
+   * NameChange constructor.
+   *
+   * @param PnrCreateAuxiliarySegmentOptions $options
+   */
+  public function __construct(PnrCreateAuxiliarySegmentOptions $options)
+  {
+    $this->manualAuxDetails = $options->manualAuxDetails;
+  }
+
 }

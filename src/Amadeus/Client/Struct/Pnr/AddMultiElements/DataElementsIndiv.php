@@ -185,11 +185,12 @@ class DataElementsIndiv extends WsMessageUtility
                     if ($element->freeText && $element->freeText != "") {
                         $this->formOfPayment->fop->freetext = $element->freeText;
                     }
-                    if ($this->checkAnyNotEmpty($element->creditCardCvcCode, $element->creditCardHolder)) {
+                    if ($this->checkAnyNotEmpty($element->creditCardCvcCode, $element->creditCardHolder, $element->newFopsDetails)) {
                         $this->fopExtension[] = new FopExtension(
                             1,
                             $element->creditCardCvcCode,
-                            $element->creditCardHolder
+                            $element->creditCardHolder,
+                            $element->newFopsDetails
                         );
                     }
                 } elseif ($element->type === Fop::IDENT_CASH && $element->freeText != "") {
@@ -254,6 +255,10 @@ class DataElementsIndiv extends WsMessageUtility
                 $this->serviceRequest->ssr->type = 'FQTV';
                 $this->serviceRequest->ssr->companyId = $element->airline;
                 $this->frequentTravellerData = new FrequentTravellerData($element);
+                break;
+            case 'SK':
+                /** @var Element\SK $element */
+                $this->serviceRequest = new ServiceRequest($element);
                 break;
             case 'OtherServiceInfo':
                 /** @var Element\OtherServiceInfo $element */
@@ -338,6 +343,7 @@ class DataElementsIndiv extends WsMessageUtility
             'ScheduleChange' => ElementManagementData::SEGNAME_RECEIVE_FROM,
             'FareMiscellaneousInformation' => null, // Special case - the type is a parameter.
             'PnrSecurity' => ElementManagementData::SEGNAME_INDIVIDUAL_SECURITY,
+            'SK' => null, // Special case - the type is a parameter.
         ];
 
         if (array_key_exists($elementType, $sourceArray)) {
@@ -365,6 +371,10 @@ class DataElementsIndiv extends WsMessageUtility
                         $elementName = ElementManagementData::SEGNAME_MISC_INFO;
                         break;
                 }
+            }
+
+            if ($elementType === 'SK') {
+              $elementName = $element->segmentName;
             }
         }
 

@@ -20,27 +20,21 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions;
+namespace Amadeus\Client\RequestOptions\Pnr\Element;
+
+use Amadeus\Client\RequestOptions\Pnr\Element;
 
 /**
- * Ticket_DisplayTSMP Request options.
+ * New Fops Details.
  *
- * @package Amadeus\Client\RequestOptions
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @package Amadeus\Client\RequestOptions\Pnr\Element
+ * @author Anton Mykhailenko <anton.mykhailenko@smile-ukraine.com>
  */
-class TicketDisplayTsmpOptions extends Base
+class NewFopsDetails extends Element
 {
-    /**
-     * Tattoo of the TSM-P to display.
-     *
-     * @var int
-     */
-    public $tattoo;
 
   /**
-   * The display mode
-   *
-   * @var ?string
+   * @var string|int
    */
-    public $displayMode = NULL;
+  public $cvData;
 }

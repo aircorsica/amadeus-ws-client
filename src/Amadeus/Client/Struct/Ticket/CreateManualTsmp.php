@@ -22,41 +22,31 @@
 
 namespace Amadeus\Client\Struct\Ticket;
 
-use Amadeus\Client\RequestOptions\TicketDisplayTsmpOptions;
+use Amadeus\Client\RequestOptions\TicketCreateTsmFareElOptions;
 use Amadeus\Client\Struct\BaseWsMessage;
-use Amadeus\Client\Struct\Ticket\DisplayTSMP\DisplayMode;
-use Amadeus\Client\Struct\Ticket\DisplayTSMP\TattooOfTSM;
+use Amadeus\Client\Struct\Ticket\CreateTSMFareElement\FareElementInfo;
+use Amadeus\Client\Struct\Ticket\DisplayTSMFareElement\FareElementTattoo;
 
 /**
- * Ticket_DisplayTSMP request structure
+ * Ticket_CreateManualTSMP
  *
  * @package Amadeus\Client\Struct\Ticket
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @author Anton Mykhailenko <anton.mykhailenko@smile-ukraine.com>
  */
-class DisplayTSMP extends BaseWsMessage
+class CreateManualTsmp extends BaseWsMessage
 {
-    /**
-     * @var TattooOfTSM
-     */
-    public $tattooOfTSM;
+  /**
+   * @var \Amadeus\Client\RequestOptions\Ticket\ServiceTattoos[]
+   */
+  public $serviceTattoos;
 
-    /**
-     * The display mode
-     *
-     * @var string
-     */
-    public $displayMode;
-
-    /**
-     * DisplayTSMP constructor.
-     *
-     * @param TicketDisplayTsmpOptions $params
-     */
-    public function __construct(TicketDisplayTsmpOptions $params)
-    {
-        $this->tattooOfTSM = new TattooOfTSM($params->tattoo);
-        if ($params->displayMode) {
-          $this->displayMode = new DisplayMode(new AttributeDetails($params->displayMode));
-        }
-    }
+  /**
+   * Ticket_CreateTSMFareElement constructor.
+   *
+   * @param \Amadeus\Client\RequestOptions\TicketCreateManualTsmpOptions $requestOptions
+   */
+  public function __construct($requestOptions)
+  {
+    $this->serviceTattoos = $requestOptions->serviceTattoos;
+  }
 }

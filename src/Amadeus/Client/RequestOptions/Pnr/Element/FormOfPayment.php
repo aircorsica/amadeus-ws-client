@@ -109,4 +109,11 @@ class FormOfPayment extends Element
      * @var bool
      */
     public $isServiceFee = false;
+
+  /**
+   * Is has new Fops Details.
+   *
+   * @var null|\Amadeus\Client\Struct\Pnr\AddMultiElements\NewFopsDetails
+   */
+    public $newFopsDetails = null;
 }

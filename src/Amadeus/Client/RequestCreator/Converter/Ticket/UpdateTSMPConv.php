@@ -20,27 +20,27 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions;
+namespace Amadeus\Client\RequestCreator\Converter\Ticket;
+
+use Amadeus\Client\RequestCreator\Converter\BaseConverter;
+use Amadeus\Client\RequestOptions\TicketUpdateRefundOptions;
+use Amadeus\Client\Struct;
 
 /**
- * Ticket_DisplayTSMP Request options.
+ * Ticket_UpdateTSMP request converter
  *
- * @package Amadeus\Client\RequestOptions
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @package Amadeus\Client\RequestCreator\Converter\Ticket
+ * @author Anton Mykhailenko <anton.mykhailenko@smile-ukraine.com>
  */
-class TicketDisplayTsmpOptions extends Base
+class UpdateTSMPConv extends BaseConverter
 {
-    /**
-     * Tattoo of the TSM-P to display.
-     *
-     * @var int
-     */
-    public $tattoo;
-
   /**
-   * The display mode
-   *
-   * @var ?string
+   * @param \Amadeus\Client\RequestOptions\TicketUpdateTSMPOptions $requestOptions
+   * @param int|string $version
+   * @return Struct\Ticket\UpdateTSMP
    */
-    public $displayMode = NULL;
+  public function convert($requestOptions, $version)
+  {
+    return new Struct\Ticket\UpdateTSMP($requestOptions);
+  }
 }

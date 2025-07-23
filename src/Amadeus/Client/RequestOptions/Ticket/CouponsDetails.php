@@ -20,27 +20,36 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions;
+namespace Amadeus\Client\RequestOptions\Ticket;
+
+use Amadeus\Client\LoadParamsFromArray;
 
 /**
- * Ticket_DisplayTSMP Request options.
+ * CouponsDetails
  *
- * @package Amadeus\Client\RequestOptions
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @package Amadeus\Client\RequestOptions\Ticket
  */
-class TicketDisplayTsmpOptions extends Base
+class CouponsDetails extends LoadParamsFromArray
 {
     /**
-     * Tattoo of the TSM-P to display.
-     *
-     * @var int
+     * @var ServiceTattoos
      */
-    public $tattoo;
+    public $serviceTattoo;
 
-  /**
-   * The display mode
-   *
-   * @var ?string
-   */
-    public $displayMode = NULL;
+    /**
+     * @var CouponValue
+     */
+    public $couponValue;
+
+    /**
+     * Flag to include ambiDummy element
+     *
+     * @var string
+     */
+    public $ambiDummy;
+
+    public function __construct($params = []) {
+      parent::__construct($params);
+      $this->ambiDummy = '';
+    }
 }

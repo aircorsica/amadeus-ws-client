@@ -20,27 +20,28 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions;
+namespace Amadeus\Client\Struct\Ticket\DisplayTSMP;
 
 /**
- * Ticket_DisplayTSMP Request options.
+ * TattooOfTSM
  *
- * @package Amadeus\Client\RequestOptions
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @package Amadeus\Client\Struct\Ticket
+ * @author Anton Mykhailenko <anton.mykhailenko@smile-ukraine.com>
  */
-class TicketDisplayTsmpOptions extends Base
+class DisplayMode
 {
-    /**
-     * Tattoo of the TSM-P to display.
-     *
-     * @var int
-     */
-    public $tattoo;
+  /**
+   * @var \Amadeus\Client\Struct\Ticket\AttributeDetails
+   */
+  public $attributeDetails;
 
   /**
-   * The display mode
+   * TattooOfTSM constructor.
    *
-   * @var ?string
+   * @param int|string $uniqueReference
    */
-    public $displayMode = NULL;
+  public function __construct($attributeDetails)
+  {
+    $this->attributeDetails = $attributeDetails;
+  }
 }

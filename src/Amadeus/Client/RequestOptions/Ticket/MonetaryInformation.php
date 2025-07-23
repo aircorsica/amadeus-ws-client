@@ -4,6 +4,11 @@ namespace Amadeus\Client\RequestOptions\Ticket;
 
 use Amadeus\Client\LoadParamsFromArray;
 
+/**
+ * MonetaryInformation
+ *
+ * @package Amadeus\Client\RequestOptions\Ticket
+ */
 class MonetaryInformation extends LoadParamsFromArray
 {
     /**
@@ -15,4 +20,9 @@ class MonetaryInformation extends LoadParamsFromArray
      * @var string
      */
     public $currency;
+
+    /**
+     * @var MonetaryDetails
+     */
+    public $monetaryDetails;
 }

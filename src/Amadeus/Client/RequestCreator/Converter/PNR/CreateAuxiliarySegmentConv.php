@@ -20,27 +20,27 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions;
+namespace Amadeus\Client\RequestCreator\Converter\PNR;
+
+use Amadeus\Client\RequestCreator\Converter\BaseConverter;
+use Amadeus\Client\RequestOptions\PnrChangeElementOptions;
+use Amadeus\Client\Struct;
 
 /**
- * Ticket_DisplayTSMP Request options.
+ * PnrCreateAuxiliarySegmentOptions Request converter
  *
- * @package Amadeus\Client\RequestOptions
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @package Amadeus\Client\RequestCreator\Converter\PNR
+ * @author Anton Mykhailenko <anton.mykhailenko@smile-ukraine.com>
  */
-class TicketDisplayTsmpOptions extends Base
+class CreateAuxiliarySegmentConv extends BaseConverter
 {
-    /**
-     * Tattoo of the TSM-P to display.
-     *
-     * @var int
-     */
-    public $tattoo;
-
   /**
-   * The display mode
-   *
-   * @var ?string
+   * @param PnrChangeElementOptions $requestOptions
+   * @param int|string $version
+   * @return Struct\Pnr\CreateAuxiliarySegment
    */
-    public $displayMode = NULL;
+  public function convert($requestOptions, $version)
+  {
+    return new Struct\Pnr\CreateAuxiliarySegment($requestOptions);
+  }
 }

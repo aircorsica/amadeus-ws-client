@@ -61,7 +61,8 @@ class Client extends Base
     const VERSION = "2.3.0";
 
     /**
-     * An identifier string for the library (to be used in Received From entries)
+     * An identifier string for the library (to be used in Received From
+     * entries)
      *
      * @var string
      */
@@ -103,7 +104,8 @@ class Client extends Base
     /**
      * Set TransactionFlowLink Consumer Id
      *
-     * @throws UnsupportedOperationException when used on unsupported WSAP versions
+     * @throws UnsupportedOperationException when used on unsupported WSAP
+     *   versions
      * @param string $id
      * @return void
      */
@@ -170,7 +172,8 @@ class Client extends Base
     /**
      * Restore a previously used session
      *
-     * To be used when implementing your own session pooling system on legacy Soap Header 2 applications.
+     * To be used when implementing your own session pooling system on legacy
+     * Soap Header 2 applications.
      *
      * @param array $sessionData
      * @return bool
@@ -190,7 +193,7 @@ class Client extends Base
         $this->loadClientParams(
             $params,
             self::RECEIVED_FROM_IDENTIFIER,
-            self::VERSION
+            self::VERSION,
         );
     }
 
@@ -209,10 +212,10 @@ class Client extends Base
         return $this->callMessage(
             $msgName,
             new RequestOptions\SecurityAuthenticateOptions(
-                $this->authParams
+                $this->authParams,
             ),
             [],
-            false
+            false,
         );
     }
 
@@ -230,7 +233,7 @@ class Client extends Base
             $msgName,
             new RequestOptions\SecuritySignOutOptions(),
             [],
-            true
+            true,
         );
     }
 
@@ -263,7 +266,7 @@ class Client extends Base
      */
     public function pnrSplit(
         RequestOptions\PnrSplitOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'PNR_Split';
 
@@ -307,13 +310,15 @@ class Client extends Base
     }
 
     /**
-     * PNR_RetrieveAndDisplay - Retrieve an Amadeus PNR by record locator including extra info
+     * PNR_RetrieveAndDisplay - Retrieve an Amadeus PNR by record locator
+     * including extra info
      *
      * This extra info is info you cannot see in the regular PNR, like Offers.
      *
      * https://webservices.amadeus.com/extranet/viewService.do?id=1922&flavourId=1&menuId=functional
      *
-     * @param RequestOptions\PnrRetrieveAndDisplayOptions $options Amadeus Record Locator for PNR
+     * @param RequestOptions\PnrRetrieveAndDisplayOptions $options Amadeus
+     *   Record Locator for PNR
      * @param array $messageOptions (OPTIONAL)
      * @return Result
      * @throws Client\InvalidMessageException
@@ -410,6 +415,20 @@ class Client extends Base
         $msgName = 'PNR_NameChange';
 
         return $this->callMessage($msgName, $options, $messageOptions);
+    }
+
+    /**
+     * PNR_CreateAuxiliarySegment
+     *
+     * @param RequestOptions\PnrCreateAuxiliarySegmentOptions $options
+     * @param array $messageOptions (OPTIONAL)
+     * @return Result
+     */
+    public function pnrCreateAuxiliarySegment(RequestOptions\PnrCreateAuxiliarySegmentOptions $options, $messageOptions = [])
+    {
+      $msgName = 'PNR_CreateAuxiliarySegment';
+
+      return $this->callMessage($msgName, $options, $messageOptions);
     }
 
     /**
@@ -599,7 +618,7 @@ class Client extends Base
      */
     public function fareMasterPricerExpertSearch(
         RequestOptions\FareMasterPricerExSearchOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Fare_MasterPricerExpertSearch';
 
@@ -619,7 +638,7 @@ class Client extends Base
      */
     public function fareMasterPricerTravelBoardSearch(
         RequestOptions\FareMasterPricerTbSearch $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Fare_MasterPricerTravelBoardSearch';
 
@@ -638,7 +657,7 @@ class Client extends Base
      */
     public function fareMasterPricerCalendar(
         RequestOptions\FareMasterPricerCalendarOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Fare_MasterPricerCalendar';
 
@@ -657,7 +676,7 @@ class Client extends Base
      */
     public function farePricePnrWithBookingClass(
         RequestOptions\FarePricePnrWithBookingClassOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Fare_PricePNRWithBookingClass';
 
@@ -676,7 +695,7 @@ class Client extends Base
      */
     public function farePricePnrWithLowerFares(
         RequestOptions\FarePricePnrWithLowerFaresOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Fare_PricePNRWithLowerFares';
 
@@ -695,7 +714,7 @@ class Client extends Base
      */
     public function farePricePnrWithLowestFare(
         RequestOptions\FarePricePnrWithLowestFareOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Fare_PricePNRWithLowestFare';
 
@@ -714,7 +733,7 @@ class Client extends Base
      */
     public function fareInformativePricingWithoutPnr(
         RequestOptions\FareInformativePricingWithoutPnrOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Fare_InformativePricingWithoutPNR';
 
@@ -733,7 +752,7 @@ class Client extends Base
      */
     public function farePriceUpsellWithoutPnr(
         RequestOptions\FarePriceUpsellWithoutPnrOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Fare_PriceUpsellWithoutPNR';
 
@@ -752,7 +771,7 @@ class Client extends Base
      */
     public function fareGetFareFamilyDescription(
         RequestOptions\FareGetFareFamilyDescriptionOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Fare_GetFareFamilyDescription';
 
@@ -771,7 +790,7 @@ class Client extends Base
      */
     public function fareInformativeBestPricingWithoutPnr(
         RequestOptions\FareInformativeBestPricingWithoutPnrOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Fare_InformativeBestPricingWithoutPNR';
 
@@ -858,7 +877,7 @@ class Client extends Base
      */
     public function airMultiAvailability(
         RequestOptions\AirMultiAvailabilityOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Air_MultiAvailability';
 
@@ -877,7 +896,7 @@ class Client extends Base
      */
     public function airSellFromRecommendation(
         RequestOptions\AirSellFromRecommendationOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Air_SellFromRecommendation';
 
@@ -981,7 +1000,7 @@ class Client extends Base
      */
     public function miniRuleGetFromPricingRec(
         RequestOptions\MiniRuleGetFromPricingRecOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'MiniRule_GetFromPricingRec';
 
@@ -1000,7 +1019,7 @@ class Client extends Base
      */
     public function miniRuleGetFromPricing(
         RequestOptions\MiniRuleGetFromPricingOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'MiniRule_GetFromPricing';
 
@@ -1019,7 +1038,7 @@ class Client extends Base
      */
     public function miniRuleGetFromETicket(
         RequestOptions\MiniRuleGetFromETicketOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'MiniRule_GetFromETicket';
 
@@ -1073,7 +1092,7 @@ class Client extends Base
      */
     public function ticketCreateTSTFromPricing(
         RequestOptions\TicketCreateTstFromPricingOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_CreateTSTFromPricing';
 
@@ -1092,7 +1111,7 @@ class Client extends Base
      */
     public function ticketCreateTSMFromPricing(
         RequestOptions\TicketCreateTsmFromPricingOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_CreateTSMFromPricing';
 
@@ -1111,7 +1130,7 @@ class Client extends Base
      */
     public function ticketCreateTSMFareElement(
         RequestOptions\TicketCreateTsmFareElOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_CreateTSMFareElement';
 
@@ -1130,7 +1149,7 @@ class Client extends Base
      */
     public function ticketCreateTASF(
         RequestOptions\TicketCreateTasfOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_CreateTASF';
 
@@ -1217,7 +1236,7 @@ class Client extends Base
      */
     public function ticketRetrieveListOfTSM(
         RequestOptions\TicketRetrieveListOfTSMOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_RetrieveListOfTSM';
 
@@ -1236,7 +1255,7 @@ class Client extends Base
      */
     public function ticketDisplayTSMFareElement(
         RequestOptions\TicketDisplayTsmFareElOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_DisplayTSMFareElement';
 
@@ -1255,7 +1274,7 @@ class Client extends Base
      */
     public function ticketCheckEligibility(
         RequestOptions\TicketCheckEligibilityOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_CheckEligibility';
 
@@ -1274,7 +1293,7 @@ class Client extends Base
      */
     public function ticketAtcShopperMasterPricerTravelBoardSearch(
         RequestOptions\TicketAtcShopperMpTbSearchOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_ATCShopperMasterPricerTravelBoardSearch';
 
@@ -1293,7 +1312,7 @@ class Client extends Base
      */
     public function ticketAtcShopperMasterPricerCalendar(
         RequestOptions\TicketAtcShopperMpCalendarOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_ATCShopperMasterPricerCalendar';
 
@@ -1312,7 +1331,7 @@ class Client extends Base
      */
     public function ticketRepricePnrWithBookingClass(
         RequestOptions\TicketRepricePnrWithBookingClassOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_RepricePNRWithBookingClass';
 
@@ -1331,7 +1350,7 @@ class Client extends Base
      */
     public function ticketCancelDocument(
         RequestOptions\TicketCancelDocumentOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_CancelDocument';
 
@@ -1350,7 +1369,7 @@ class Client extends Base
      */
     public function ticketReissueConfirmedPricing(
         RequestOptions\TicketReissueConfirmedPricingOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_ReissueConfirmedPricing';
 
@@ -1403,7 +1422,7 @@ class Client extends Base
      */
     public function docIssuanceIssueTicket(
         RequestOptions\DocIssuanceIssueTicketOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'DocIssuance_IssueTicket';
 
@@ -1422,7 +1441,7 @@ class Client extends Base
      */
     public function docIssuanceIssueMiscellaneousDocuments(
         RequestOptions\DocIssuanceIssueMiscDocOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'DocIssuance_IssueMiscellaneousDocuments';
 
@@ -1441,7 +1460,7 @@ class Client extends Base
      */
     public function docIssuanceIssueCombined(
         RequestOptions\DocIssuanceIssueCombinedOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'DocIssuance_IssueCombined';
 
@@ -1460,7 +1479,7 @@ class Client extends Base
      */
     public function docRefundInitRefund(
         RequestOptions\DocRefundInitRefundOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'DocRefund_InitRefund';
 
@@ -1479,7 +1498,7 @@ class Client extends Base
      */
     public function docRefundIgnoreRefund(
         RequestOptions\DocRefundIgnoreRefundOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'DocRefund_IgnoreRefund';
 
@@ -1498,7 +1517,7 @@ class Client extends Base
      */
     public function docRefundUpdateRefund(
         RequestOptions\DocRefundUpdateRefundOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'DocRefund_UpdateRefund';
 
@@ -1517,7 +1536,7 @@ class Client extends Base
      */
     public function docRefundProcessRefund(
         RequestOptions\DocRefundProcessRefundOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'DocRefund_ProcessRefund';
 
@@ -1536,7 +1555,7 @@ class Client extends Base
      */
     public function ticketInitRefund(
         RequestOptions\TicketInitRefundOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_InitRefund';
 
@@ -1555,7 +1574,7 @@ class Client extends Base
      */
     public function ticketIgnoreRefund(
         RequestOptions\TicketIgnoreRefundOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_IgnoreRefund';
 
@@ -1574,7 +1593,7 @@ class Client extends Base
      */
     public function ticketProcessRefund(
         RequestOptions\TicketProcessRefundOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_ProcessRefund';
 
@@ -1593,9 +1612,48 @@ class Client extends Base
      */
     public function ticketUpdateRefund(
         RequestOptions\TicketUpdateRefundOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Ticket_UpdateRefund';
+
+        return $this->callMessage($msgName, $options, $messageOptions);
+    }
+
+  /**
+   * Ticket_CreateManualTSMP
+   *
+   * @param \Amadeus\Client\RequestOptions\TicketCreateManualTsmpOptions $options
+   * @param $messageOptions
+   *
+   * @return \Amadeus\Client\Result
+   * @throws \Amadeus\Client\Exception
+   * @throws \Amadeus\Client\InvalidMessageException
+   * @throws \Amadeus\Client\RequestCreator\MessageVersionUnsupportedException
+   */
+    public function ticketCreateManualTsmp(
+      RequestOptions\TicketCreateManualTsmpOptions $options,
+      $messageOptions = [],
+    ) {
+      $msgName = 'Ticket_CreateManualTSMP';
+
+      return $this->callMessage($msgName, $options, $messageOptions);
+    }
+
+    /**
+     * Ticket_UpdateTSMP
+     *
+     * @param RequestOptions\TicketUpdateTSMPOptions $options
+     * @param array $messageOptions (OPTIONAL)
+     * @return Result
+     * @throws Client\InvalidMessageException
+     * @throws Client\RequestCreator\MessageVersionUnsupportedException
+     * @throws Exception
+     */
+    public function ticketUpdateTSMP(
+        RequestOptions\TicketUpdateTSMPOptions $options,
+        $messageOptions = [],
+    ) {
+        $msgName = 'Ticket_UpdateTSMP';
 
         return $this->callMessage($msgName, $options, $messageOptions);
     }
@@ -1647,7 +1705,7 @@ class Client extends Base
      */
     public function priceXplorerExtremeSearch(
         RequestOptions\PriceXplorerExtremeSearchOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'PriceXplorer_ExtremeSearch';
 
@@ -1666,7 +1724,7 @@ class Client extends Base
      */
     public function salesReportsDisplayQueryReport(
         RequestOptions\SalesReportsDisplayQueryReportOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'SalesReports_DisplayQueryReport';
 
@@ -1685,7 +1743,7 @@ class Client extends Base
      */
     public function serviceIntegratedPricing(
         RequestOptions\ServiceIntegratedPricingOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Service_IntegratedPricing';
 
@@ -1704,7 +1762,7 @@ class Client extends Base
      */
     public function serviceIntegratedCatalogue(
         RequestOptions\ServiceIntegratedCatalogueOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Service_IntegratedCatalogue';
 
@@ -1723,7 +1781,7 @@ class Client extends Base
      */
     public function serviceBookPriceProduct(
         RequestOptions\ServiceBookPriceProductOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Service_BookPriceProduct';
 
@@ -1742,7 +1800,7 @@ class Client extends Base
      */
     public function serviceBookPriceService(
         RequestOptions\ServiceBookPriceServiceOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'Service_BookPriceService';
 
@@ -1761,7 +1819,7 @@ class Client extends Base
      */
     public function salesReportsDisplayDailyOrSummarizedReport(
         RequestOptions\SalesReportsDisplayDailyOrSummarizedReportOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'SalesReports_DisplayDailyOrSummarizedReport';
 
@@ -1780,7 +1838,7 @@ class Client extends Base
      */
     public function salesReportsDisplayNetRemitReport(
         RequestOptions\SalesReportsDisplayNetRemitReportOptions $options,
-        $messageOptions = []
+        $messageOptions = [],
     ) {
         $msgName = 'SalesReports_DisplayNetRemitReport';
 
@@ -2044,14 +2102,14 @@ class Client extends Base
             $messageName,
             $this->requestCreator->createRequest(
                 $messageName,
-                $options
+                $options,
             ),
-            $messageOptions
+            $messageOptions,
         );
 
         $response = $this->responseHandler->analyzeResponse(
             $sendResult,
-            $messageName
+            $messageName,
         );
 
         if ($messageOptions['returnXml'] === false) {
@@ -2064,20 +2122,26 @@ class Client extends Base
     /**
      * Make message options
      *
-     * Message options are meta options when sending a message to the amadeus web services
-     * - 'endSession' (if stateful) : should we end the current session after sending this call?
-     * - 'returnXml' : Should we return the XML string in the Result::responseXml property?
-     *   (this overrides the default setting returnXml in the Amadeus\Client\Params for a single message)
+     * Message options are meta options when sending a message to the amadeus
+     * web services
+     * - 'endSession' (if stateful) : should we end the current session after
+     * sending this call?
+     * - 'returnXml' : Should we return the XML string in the
+     * Result::responseXml property?
+     *   (this overrides the default setting returnXml in the
+     * Amadeus\Client\Params for a single message)
      *
-     * @param array $incoming The Message options chosen by the caller - if any.
-     * @param bool $endSession Switch if you want to terminate the current session after making the call.
+     * @param array $incoming The Message options chosen by the caller - if
+     *   any.
+     * @param bool $endSession Switch if you want to terminate the current
+     *   session after making the call.
      * @return array
      */
     protected function makeMessageOptions(array $incoming, $endSession = false)
     {
         $options = [
             'endSession' => $endSession,
-            'returnXml' => $this->returnResultXml
+            'returnXml' => $this->returnResultXml,
         ];
 
         if (array_key_exists('endSession', $incoming)) {

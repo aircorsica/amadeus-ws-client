@@ -23,6 +23,7 @@
 namespace Amadeus\Client\RequestOptions\DocIssuance;
 
 use Amadeus\Client\LoadParamsFromArray;
+use Amadeus\Client\Struct\DocIssuance\SubCompoundOptions;
 
 /**
  * DocIssuance Option
@@ -89,4 +90,13 @@ class Option extends LoadParamsFromArray
      * @var string
      */
     public $subCompoundDescription;
+
+    /**
+     * The subCompound options array.
+     *
+     * Used when need multiple subCompound.
+     *
+    * @var array
+    */
+    public $subCompoundOptions = NULL;
 }

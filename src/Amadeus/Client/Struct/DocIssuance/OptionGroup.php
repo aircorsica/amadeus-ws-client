@@ -56,6 +56,13 @@ class OptionGroup
     {
         if ($option instanceof Option) {
             $this->switches = new Switches($option->indicator);
+
+            if ($option->subCompoundOptions !== NULL) {
+              $this->subCompoundOptions = array_merge(
+                $this->subCompoundOptions,
+                $option->subCompoundOptions,
+              );
+            }
             $this->subCompoundOptions[] = new SubCompoundOptions(
                 $option->subCompoundType,
                 $option->subCompoundDescription

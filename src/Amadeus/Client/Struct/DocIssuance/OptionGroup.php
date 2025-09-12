@@ -63,10 +63,12 @@ class OptionGroup
                 $option->subCompoundOptions,
               );
             }
-            $this->subCompoundOptions[] = new SubCompoundOptions(
-                $option->subCompoundType,
-                $option->subCompoundDescription
-            );
+            if (!empty($option->subCompoundType) && !empty($option->subCompoundDescription)) {
+                $this->subCompoundOptions[] = new SubCompoundOptions(
+                    $option->subCompoundType,
+                    $option->subCompoundDescription
+                );
+            }
         } else {
             $this->switches = new Switches($option);
         }
